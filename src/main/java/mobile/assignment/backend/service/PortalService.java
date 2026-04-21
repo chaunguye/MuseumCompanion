@@ -1,11 +1,11 @@
 package mobile.assignment.backend.service;
 
 import mobile.assignment.backend.model.Artwork;
-import mobile.assignment.backend.model.Exhibition;
-import mobile.assignment.backend.model.MuseumInfo;
+import mobile.assignment.backend.model.Collection;
+import mobile.assignment.backend.model.Museum;
 import mobile.assignment.backend.repository.ArtworkRepository;
-import mobile.assignment.backend.repository.ExhibitionRepository;
-import mobile.assignment.backend.repository.MuseumInfoRepository;
+import mobile.assignment.backend.repository.CollectionRepository;
+import mobile.assignment.backend.repository.MuseumRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,24 +15,24 @@ import java.util.List;
 public class PortalService {
 
     @Autowired
-    private ExhibitionRepository exhibitionRepository;
+    private CollectionRepository collectionRepository;
 
     @Autowired
     private ArtworkRepository artworkRepository;
 
     @Autowired
-    private MuseumInfoRepository museumInfoRepository;
+    private MuseumRepository museumRepository;
 
-    public List<Exhibition> getAllExhibitions() {
-        return exhibitionRepository.findAll();
+    public List<Collection> getAllCollections() {
+        return collectionRepository.findAll();
     }
 
-    public List<Artwork> searchArtworks(String query) {
-        return artworkRepository.findByTitleContainingIgnoreCaseOrArtistContainingIgnoreCase(query, query);
+    public List<Artwork> getAllArtworks() {
+        return artworkRepository.findAll();
     }
 
-    public MuseumInfo getMuseumInfo() {
+    public Museum getMuseumInfo() {
         // Assuming there's only one entry for museum general info
-        return museumInfoRepository.findAll().stream().findFirst().orElse(null);
+        return museumRepository.findAll().stream().findFirst().orElse(null);
     }
 }

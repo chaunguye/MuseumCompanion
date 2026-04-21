@@ -1,8 +1,8 @@
 package mobile.assignment.backend.controller;
 
 import mobile.assignment.backend.model.Artwork;
-import mobile.assignment.backend.model.Exhibition;
-import mobile.assignment.backend.model.MuseumInfo;
+import mobile.assignment.backend.model.Collection;
+import mobile.assignment.backend.model.Museum;
 import mobile.assignment.backend.service.PortalService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -16,18 +16,18 @@ public class PortalController {
     @Autowired
     private PortalService portalService;
 
-    @GetMapping("/exhibitions")
-    public List<Exhibition> getExhibitions() {
-        return portalService.getAllExhibitions();
+    @GetMapping("/collections")
+    public List<Collection> getCollections() {
+        return portalService.getAllCollections();
     }
 
-    @GetMapping("/artworks/search")
-    public List<Artwork> searchArtworks(@RequestParam String query) {
-        return portalService.searchArtworks(query);
+    @GetMapping("/artworks")
+    public List<Artwork> getArtworks() {
+        return portalService.getAllArtworks();
     }
 
     @GetMapping("/museum-info")
-    public MuseumInfo getMuseumInfo() {
+    public Museum getMuseumInfo() {
         return portalService.getMuseumInfo();
     }
 }
