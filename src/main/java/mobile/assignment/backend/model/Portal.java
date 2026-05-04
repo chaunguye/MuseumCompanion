@@ -22,6 +22,10 @@ public class Portal {
     @JoinColumn(name = "museum_id")
     private Museum museum;
 
+    @ManyToOne
+    @JoinColumn(name = "room_id")
+    private Room room;
+
     @CreationTimestamp
     @Column(name = "created_at", updatable = false)
     private OffsetDateTime createdAt;
@@ -37,4 +41,6 @@ public class Portal {
     public void setMuseum(Museum museum) { this.museum = museum; }
     public OffsetDateTime getCreatedAt() { return createdAt; }
     public void setCreatedAt(OffsetDateTime createdAt) { this.createdAt = createdAt; }
+    public Room getRoom() { return room; }
+    public void setRoom(Room room) { this.room = room; }
 }

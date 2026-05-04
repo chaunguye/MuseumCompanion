@@ -1,38 +1,19 @@
 package mobile.assignment.backend.service;
 
-import mobile.assignment.backend.model.Artwork;
-import mobile.assignment.backend.model.Collection;
-import mobile.assignment.backend.model.Museum;
-import mobile.assignment.backend.repository.ArtworkRepository;
-import mobile.assignment.backend.repository.CollectionRepository;
-import mobile.assignment.backend.repository.MuseumRepository;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
+import mobile.assignment.backend.model.Portal;
+import mobile.assignment.backend.repository.PortalRepository;
 
 @Service
 public class PortalService {
-
     @Autowired
-    private CollectionRepository collectionRepository;
+    private PortalRepository portalRepository;
 
-    @Autowired
-    private ArtworkRepository artworkRepository;
-
-    @Autowired
-    private MuseumRepository museumRepository;
-
-    public List<Collection> getAllCollections() {
-        return collectionRepository.findAll();
-    }
-
-    public List<Artwork> getAllArtworks() {
-        return artworkRepository.findAll();
-    }
-
-    public Museum getMuseumInfo() {
-        // Assuming there's only one entry for museum general info
-        return museumRepository.findAll().stream().findFirst().orElse(null);
+    public List<Portal> getAllPortals() {
+        return portalRepository.findAll();
     }
 }

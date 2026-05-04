@@ -5,6 +5,7 @@ import java.time.OffsetDateTime;
 import java.util.UUID;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
+import java.util.Set;
 
 @Entity
 @Table(name = "artworks")
@@ -46,6 +47,14 @@ public class Artwork {
     @Column(name = "updated_at")
     private OffsetDateTime updatedAt;
 
+    @ManyToMany
+    @JoinTable(
+        name = "artwork_categories",
+        joinColumns = @JoinColumn(name = "artwork_id"),
+        inverseJoinColumns = @JoinColumn(name = "category_id")
+    )
+    private Set<Category> categories;
+
     // Getters and Setters
     public UUID getId() { return id; }
     public void setId(UUID id) { this.id = id; }
@@ -69,4 +78,6 @@ public class Artwork {
     public void setCreatedAt(OffsetDateTime createdAt) { this.createdAt = createdAt; }
     public OffsetDateTime getUpdatedAt() { return updatedAt; }
     public void setUpdatedAt(OffsetDateTime updatedAt) { this.updatedAt = updatedAt; }
+    public Set<Category> getCategories() { return categories; }
+    public void setCategories(Set<Category> categories) { this.categories = categories; }
 }
