@@ -24,8 +24,9 @@ public class PortalController {
     @Autowired
     private ArtworkService artworkService;
 
-    @GetMapping("/")
-    public ResponseEntity<Map<String, Object>> getPortalInfo() {
+    @GetMapping("")
+    public ResponseEntity<Map<String, Object>> getPortalInfo(
+        @RequestParam(name = "category", required = false) String category) {
         Map<String, Object> response = new HashMap<>();
         response.put("daily_highlight", portalService.getAllPortals());
         response.put("artworks", artworkService.getAllArtworks());
